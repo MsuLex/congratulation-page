@@ -102,7 +102,7 @@
         <!-- Replace this message with your own -->
         You did it — this is your custom congratulation message. Replace me with the message you want shown immediately on page load.
       </div>
-      <a href="m.me/921757524343785 class="msgBtn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22 2L2 12l7.5 2.5L12 22l3.5-7.5L22 2z"/></svg> Message Me for comfirmation</a>
+      <a href="https://m.me/921757524343785" class="msgBtn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22 2L2 12l7.5 2.5L12 22l3.5-7.5L22 2z"/></svg> Message Me on Messenger</a>
     </div>
   </div>
 
