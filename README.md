@@ -69,6 +69,28 @@
       pointer-events:none;
       z-index:-1;
     }
+  .msgBtn{
+      margin-top:24px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:14px 26px;
+      background:var(--accent);
+      color:#000;
+      font-weight:600;
+      border-radius:9999px;
+      text-decoration:none;
+      box-shadow:0 0 0 rgba(255,209,102,0.5);
+      transition:transform .25s, box-shadow .25s;
+    }
+    .msgBtn:hover{
+      transform:translateY(-3px) scale(1.05);
+      box-shadow:0 0 25px rgba(255,209,102,0.45);
+    }
+    .msgBtn:hover{
+      transform:translateY(-2px);
+      opacity:0.9;
+    }
   </style>
 </head>
 <body>
@@ -80,13 +102,14 @@
         <!-- Replace this message with your own -->
         You did it — this is your custom congratulation message. Replace me with the message you want shown immediately on page load.
       </div>
+      <a href="https://t.me/sulex" class="msgBtn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22 2L2 12l7.5 2.5L12 22l3.5-7.5L22 2z"/></svg> Message Me for comfirmation</a>
     </div>
   </div>
 
   <script>
     // === YOUR CUSTOM MESSAGE ===
     const CONGRATS_MESSAGE = `
-      <strong>Deborah Cone(Debi)!</strong><br>
+      <strong>My lovely fan!</strong><br>
       You've been successfully been adeed to the Wener Music Nashville Membership!
       Your official membership card will be delivered to you soon. Make sure to stay active by following up with our shows and event to enjoy all the exclusive benefit that come with your membership
     `;
@@ -104,6 +127,51 @@
     // Show overlay immediately after page load
     window.addEventListener('DOMContentLoaded', () => setTimeout(showOverlay, 10));
   </script>
+<canvas id="fireworksCanvas" style="position:fixed; inset:0; pointer-events:none; z-index:9998;"></canvas>
+
+<script>
+  const canvas = document.getElementById('fireworksCanvas');
+  const ctx = canvas.getContext('2d');
+  let W, H;
+  function resize(){ W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+  resize(); addEventListener('resize', resize);
+
+  const particles = [];
+  function fire(x,y){
+    for(let i=0;i<60;i++){
+      particles.push({
+        x, y,
+        angle: Math.random()*Math.PI*2,
+        speed: Math.random()*4+2,
+        life: 60
+      });
+    }
+  }
+
+  function animate(){
+    ctx.clearRect(0,0,W,H);
+    for(let i=particles.length-1;i>=0;i--){
+      const p = particles[i];
+      p.x += Math.cos(p.angle)*p.speed;
+      p.y += Math.sin(p.angle)*p.speed;
+      p.speed *= 0.96;
+      p.life--;
+      ctx.fillStyle = 'rgba(255,209,102,'+(p.life/60)+')';
+      ctx.fillRect(p.x,p.y,3,3);
+      if(p.life<=0) particles.splice(i,1);
+    }
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  window.addEventListener('DOMContentLoaded',()=>{
+    setTimeout(()=>{
+      const {innerWidth:w, innerHeight:h} = window;
+      fire(w*0.3,h*0.4);
+      fire(w*0.7,h*0.4);
+      fire(w*0.5,h*0.6);
+    },600);
+  });
+</script>
 </body>
 </html>
-
